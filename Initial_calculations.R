@@ -10,6 +10,7 @@
 #install.packages("ggplot2")
 #install.packages("lubridate")
 #install.packages("stringr")
+#install.packages("hms")
 
 update.packages("lubridate")
 update.packages("dplyr")
@@ -22,6 +23,7 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 library(stringr)
+library(hms)
 
 ################################### DATA LOADING
 
@@ -34,13 +36,13 @@ library(stringr)
 
 ##### this command reads an excel file, tells R not to bring the first row as column 
 ##### names, and tells it to skip the first four rows it is to read
-frog_one <- read_excel("/Users/bottk/Downloads/input data/Frog 1.xlsx", col_names = FALSE, skip = 4)
-frog_two <- read_excel("/Users/bottk/Downloads/input data/Frog 2.xlsx", col_names = FALSE, skip = 4)
-frog_three <- read_excel("/Users/bottk/Downloads/input data/Frog 3.xlsx", col_names = FALSE, skip = 4)
-frog_four <- read_excel("/Users/bottk/Downloads/input data/Frog 4.xlsx", col_names = FALSE, skip = 4)
-frog_five <- read_excel("/Users/bottk/Downloads/input data/Frog 5.xlsx", col_names = FALSE, skip = 4)
-frog_six <- read_excel("/Users/bottk/Downloads/input data/Frog 6.xlsx", col_names = FALSE, skip = 4)
-frog_seven <- read_excel("/Users/bottk/Downloads/input data/Frog 7.xlsx", col_names = FALSE, skip = 4)
+frog_one <- read_excel("Frog 1.xlsx", col_names = FALSE, skip = 4)
+frog_two <- read_excel("Frog 2.xlsx", col_names = FALSE, skip = 4)
+frog_three <- read_excel("Frog 3.xlsx", col_names = FALSE, skip = 4)
+frog_four <- read_excel("Frog 4.xlsx", col_names = FALSE, skip = 4)
+frog_five <- read_excel("Frog 5.xlsx", col_names = FALSE, skip = 4)
+frog_six <- read_excel("Frog 6.xlsx", col_names = FALSE, skip = 4)
+frog_seven <- read_excel("Frog 7.xlsx", col_names = FALSE, skip = 4)
 
 ##### take a look
 # do this as often as you need! 
@@ -329,4 +331,4 @@ frog_prefs <- frog_all %>%
 
 ### write CSVs to file
 View(frog_prefs)
-write_csv(frog_prefs, "/Users/bottk/Desktop/frog_prefs.csv")
+write_csv(frog_prefs, "/Users/jennylake8/Desktop/frog_prefs.csv")
