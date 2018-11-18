@@ -360,7 +360,7 @@ ggplot(for_graph2) +
 ggplot(for_graph2) + 
   geom_line(aes(x = playbackNumber, y = frogPlaybackAvePrefDiffTime, group = inputSound, colour = inputSound)) + 
   scale_color_manual(values = c("Red", "Orange"), name = "Playback") +
-  xlab("Repetition") + ylab("Preference Difference Time (minutes)") +
+  xlab("Repetition") + ylab("Preference Difference Time (seconds)") +
   geom_point(aes(x = playbackNumber, y = frogPlaybackAvePrefDiffTime, group = inputSound, colour = inputSound)) + 
   geom_errorbar(aes(x = playbackNumber,
                     ymin = frogPlaybackAvePrefDiffTime - me,
@@ -407,7 +407,7 @@ ggplot(data = frog_prefs_graphs, mapping = aes(x = video123, y = frogVideoAvePre
   guides(fill=guide_legend(title="Playback"))
 
 ggplot(data = frog_prefs_graphs, mapping = aes(x = video123, y = frogVideoAvePrefDiffTime, fill= inputSound)) +
-  geom_boxplot(position = "dodge") + xlab("Video") + ylab("Preference Difference Time (minutes)") +
+  geom_boxplot(position = "dodge") + xlab("Video") + ylab("Preference Difference Time (seconds)") +
   annotate("text", x=0.67, y=530, label= "***") +
   annotate("text", x=1.67, y=690, label= "****") +
   annotate("text", x=2.67, y=750, label= "****") +guides(fill=guide_legend(title="Playback"))
@@ -442,7 +442,7 @@ ggplot(data = frog_prefs_graphs,
        mapping = aes(x = inputSound, fill = inputSound,
                      y = frogAvePrefDiffTime)) +
   geom_boxplot(position = "dodge") + xlab("Playback") + 
-  ylab("Preference Difference Time (minutes)") + geom_text(data = frog_prefs_graphs, aes(x = 1.0, y = 500),label = "****")
+  ylab("Preference Difference Time (seconds)") + geom_text(data = frog_prefs_graphs, aes(x = 1.0, y = 500),label = "****")
 
 
 ##this works but I'm not using it for now.
