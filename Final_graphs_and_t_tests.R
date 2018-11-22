@@ -76,7 +76,7 @@ frog_prefs_graphs2 <- frog_prefs_graphs2 %>%
   group_by(video123, inputSound) %>%
   mutate(vidPrefTotalCm = mean(prefTotalCm))
 
-## ... within rep ####tried changing it to sort by rep but it's still showing video hmm -JL
+## ... within rep 
 group_by(video123, inputSound) %>%
   mutate(repPrefTotalCm = mean(prefTotalCm)) %>%
   ## ... for the sound WITHIN frog
@@ -445,11 +445,6 @@ ggplot(data = frog_prefs_graphs,
   ylab("Preference Difference Time (seconds)") + geom_text(data = frog_prefs_graphs, aes(x = 1.0, y = 500),label = "****")
 
 
-##this works but I'm not using it for now.
-+ 
-  stat_compare_means(ref.group = "Laevis",
-                     method = "t.test", label = "p.signif")
-
 ##compare means
 ###use frogAvePrefTotalCm for data analysis because you want to average by FROG first.. not average of all points.
 
@@ -589,13 +584,8 @@ reps_t_tests_pdiffCm <- compare_means(prefDiffCm ~ inputSound, group.by = "playb
 
 reps_t_tests_pdiffTime <- compare_means(prefDiffTime ~ inputSound, group.by = "playbackNumber", data = frog_prefs_graphs, ref.group = "Laevis",
                                       method = "t.test", paired = FALSE)
-#######t tests!
 
-##laevis and petersii by video
-laevis4 <- filter(frog_prefs_graphs, video123 == 1, inputSound == "Laevis")
-petersii4 <- filter(frog_prefs_graphs, video123 == 1, inputSound == "Petersii")
-
-t.test(laevis4$frogVideoAvePrefTotalCm, petersii4$frogVideoAvePrefTotalCm, paired = FALSE, alternative = "two.sided")
+#######t tests! just to make sure.. here's another way to do it -JL
 
 ###T TESTS FOR ALL PLAYBACKS HERE.
 ##for all
@@ -604,9 +594,14 @@ petersii4 <- filter(frog_prefs_graphs, inputSound == "Petersii")
 
 t.test(laevis4$frogAvePrefTotalCm, petersii4$frogAvePrefTotalCm, paired = FALSE, alternative = "two.sided")
 
+##laevis and petersii by video
+laevis4 <- filter(frog_prefs_graphs, video123 == 1, inputSound == "Laevis")
+petersii4 <- filter(frog_prefs_graphs, video123 == 1, inputSound == "Petersii")
 
-## t tests for playbackNumber
+t.test(laevis4$frogVideoAvePrefTotalCm, petersii4$frogVideoAvePrefTotalCm, paired = FALSE, alternative = "two.sided")
+
+## t tests for playbackNumber.. Jay from R tutoring said this one doesn't but the code for reps above is correct
 laevis1 <- filter(frog_prefs_graphs, playbackNumber == 1, inputSound == "Laevis")
 petersii1 <- filter(frog_prefs_graphs, playbackNumber == 1, inputSound == "Petersii")
-t.test(laevis1$prefDiffCm, petersii1$prefDiffCm, paired = FALSE, alternative = "two.sided")
+t.test(laevis1$frogPlaybackAvePrefDiffCm, petersii1$frogPlaybackAvePrefDiffCm, paired = FALSE, alternative = "two.sided")
 
